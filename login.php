@@ -20,7 +20,9 @@
 			if($result['verified']==false){
 				echo "对不起，你的注册还没有激活！\n";
 			}
-			echo "你已经登陆！";
+			else{
+				echo "你已经登陆！";
+			}
 		}
 		else{
 			echo "用户名或密码错误！\n";
