@@ -6,10 +6,12 @@
 	</head>
 	<body>
 		<?php
-		require('db.php');
+		require('connect.php');
 		
 		$username=$_POST['username'];
 		$password=$_POST['password'];
+
+		mysql_select_db('lgt',$connect) or die (mysql_error());
 		$sql="SELECT `password`,`verified` FROM `user` WHERE `username`='$username'";
 		$result_id=mysql_query($sql) or die (mysql_error());
 		$result=mysql_fetch_array($result_id);
