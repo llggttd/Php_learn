@@ -2,6 +2,12 @@
 //文件信息
 echo "File Path: ".__FILE__."</br>";
 
+$a=array();
+for($i=1;$i<=10;$i++)
+	for($j=0; $j<10;$j++ ){
+		$a[$i][]=$j;
+	}
+print_r($a);
 
 
 //全局变量

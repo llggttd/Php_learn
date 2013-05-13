@@ -12,17 +12,12 @@
 			mysql_select_db('upms2012_v2',$connect) or die (mysql_error());
 			$sql="SELECT `product`,`product_json` FROM `draft`";
 			$result_id=mysql_query($sql) or die (mysql_error());
-//			$result=mysql_fetch_assoc($result_id);
-//			var_dump($result);
 			$file_handle=fopen("./test.csv","w+");
 			for($i=1;$i<=mysql_num_rows($result_id) ;$i++ ){
-//				$json=mysql_fetch_assoc($result_id);
-//				var_dump($json);
 				fputcsv($file_handle,mysql_fetch_assoc($result_id));
 			}
 			fclose($file_handle);
 			echo "数据已写入CSV"."\n";
-//			var_dump(json_encode($result));
 			?></pre>
 	</body>
 	</html>
