@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script>
+		$(document).on('click', '#a', function(e) {
+			$.get('ajaxtest.php').done(function(data, textStatus, jqXHR) {
+				alert(data);
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				alert(errorThrown)
+			});
+		});
+		$(document).on('click', '#b', function(e) {
+			//var options = {};
+			$.ajax({
+				url: 'test.csv',
+				success: function(data) {
+					alert(/haha/+data);
+				}
+			});
+		});
+		$(document).on('click', '#c', function(e) {
+			var xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				alert('333:\n' + xhr.responseText);
+			};
+			xhr.open( 'get', 'ajaxtest.php', false);
+			xhr.send();
+			alert('2222:\n' + xhr.responseText);
+		});
+	</script>
+</head>
+<body>
+<button id="a">工</button>
+<button id="b">工</button>
+<button id="c">C</button>
+</body>
+</html>

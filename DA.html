@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DA</title>
+</head>
+<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="csv.js"></script>
+<div id="select">
+	<input type="button" onclick="Update(this.value)" style="width:100px" name="query" value="类型">
+	<input type="button" onclick="Update(this.value)" style="width:100px" name="query" value="设计师">
+	<input type="button" onclick="Update(this.value)" style="width:100px" name="query"  value="名称">
+	<input type="file" onchange="loadcsv(this.files)" name="csv" id="csv">
+</div>
+<div id="date" >
+	开始日期<input type="date" onchange="date()" style="width:150px" id="date_start" />
+	截止日期<input type="date" onchange="date()" style="width:150px" id="date_end" />
+</div>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="debuglog">
+</div>
+<script src="plotchart.js"></script>
+</body>
+</html>

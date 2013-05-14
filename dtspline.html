@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>动态获取水果信息</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(function () {
+			var options = {
+				chart: {
+					renderTo: 'container',
+					type: 'column'
+				},
+				xAxis: {
+					categories:[]
+				},
+				series: []
+			};
+			$.get('f.csv', function(data) {
+				//分割线
+				var lines = data.split('\n');
+				//迭代的线条和添加类别或系列
+				$.each(lines, function(lineNo, line) {  //lineNo=行数  ，  line  行信息
+					var items = line.split(',');
+					//标题行containes类别
+
+					if (lineNo == 0) {
+						$.each(items, function(itemNo, item) {
+							
+							if (itemNo > 0) {
+								//alert(options.xAxis.categories+":值");
+								//alert(options.xAxis.categories.length+":length");
+								options.xAxis.categories.push(item); // 选择x轴的类别  push 从数组的后面添加值
+							}
+						});
+					//剩下的行包含在第一个位置的数据与他们的名字
+					} else {
+						var series = {
+							data: []
+						};
+						$.each(items, function(itemNo, item) {
+							if (itemNo == 0) {
+								series.name = item;
+							} else {
+								series.data.push(parseFloat(item));
+							}
+						});
+						options.series.push(series);
+					}
+				});
+				// Create the chart
+				var chart = new Highcharts.Chart(options);
+			});
+		});
+		</script>
+	</head>
+	<body>
+<script src="js/highcharts.js"></script>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>

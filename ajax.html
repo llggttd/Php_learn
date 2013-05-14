@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<body>
+	<div>
+		<input type="button" value="1" />
+		<input type="button" value="2" />
+		<input type="button" value="3" />
+		</div>
+		<script>
+		$('input').click(function () {
+			$.post('test2.php',{key:this.value},function (data) {alert(data);
+			}).fail(function () {alert("error");})
+			});
+			</script>
+</body>
+</html>
